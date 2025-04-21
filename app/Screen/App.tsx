@@ -1,15 +1,23 @@
-import { View, Text, StyleSheet } from 'react-native'
-import React from 'react'
-import Cat from '../Component/Cat'
-import LoginScreen from './StackScreen/LoginScreen'
+import { StyleSheet } from "react-native";
+import React from "react";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Home from "./StackScreen/Home";
+import Lab1StackScreen from "./Lab1Screen/StackLab1Screen";
+import Lab1Screen from "./StackScreen/Lab1Screen";
+const Stack = createNativeStackNavigator();
 const App = () => {
   return (
-      <LoginScreen/>
-  )
-}
+    <Stack.Navigator
+      screenOptions={{ headerShown: false }}
+      initialRouteName={"Home"}
+    >
+      <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="Lab1" component={Lab1Screen} />
+      <Stack.Screen name="Lab1StackScreen" component={Lab1StackScreen} />
+    </Stack.Navigator>
+  );
+};
 
-export default App
+export default App;
 
-const styles= StyleSheet.create({
-    
-})
+const styles = StyleSheet.create({});
