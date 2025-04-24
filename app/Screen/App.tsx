@@ -4,16 +4,18 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Home from "./StackScreen/Home";
 import Lab1StackScreen from "./Lab1Screen/StackLab1Screen";
 import Lab1Screen from "./StackScreen/Lab1Screen";
+import LyThuyetBuoi2 from "./LyThuyet/Buoi2/LyThuyetBuoi2";
 const Stack = createNativeStackNavigator();
 const App = () => {
   return (
     <Stack.Navigator
       screenOptions={{ headerShown: false }}
-      initialRouteName={"Home"}
+      initialRouteName={"LyThuyetBuoi2"}
     >
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="Lab1" component={Lab1Screen} />
       <Stack.Screen name="Lab1StackScreen" component={Lab1StackScreen} />
+      <Stack.Screen name="LyThuyetBuoi2" component={LyThuyetBuoi2} />
     </Stack.Navigator>
   );
 };
