@@ -8,6 +8,7 @@ import CustomButtonScreen from "../Lab1Screen/CustomButton";
 import Form from "../Lab1Screen/Form";
 import LongList from "../Lab1Screen/LongList";
 import ScrollableContent from "../Lab1Screen/ScrollableContent";
+import Calculator from "./Calculator";
 
 const Lab1Stack = createNativeStackNavigator();
 
@@ -22,6 +23,7 @@ export default function Lab1StackScreen() {
       <Lab1Stack.Screen name="Form" component={Form} />
       <Lab1Stack.Screen name="LongList" component={LongList} />
       <Lab1Stack.Screen name="ScrollableContent" component={ScrollableContent} />
+      <Lab1Stack.Screen name="Calculator" component={Calculator} />
     </Lab1Stack.Navigator>
   );
 }

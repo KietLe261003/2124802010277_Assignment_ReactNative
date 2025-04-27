@@ -10,6 +10,7 @@ const Project = [
   { title: "Project 6", Screen: "ScrollableContent" },
   { title: "Project 7", Screen: "Form" },
   { title: "Project 8", Screen: "LongList" },
+  {title: "Project 9", Screen: "Calculator" },
 ];
 const Lab1Screen = () => {
   const navigation = useNavigation<any>();
