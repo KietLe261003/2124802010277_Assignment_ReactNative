@@ -1,13 +1,13 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
-import HelloWorld from "../Lab1Screen/HelloWorld";
-import StateAndProps from "../Lab1Screen/StateAndProps";
-import Styling from "../Lab1Screen/Styling";
-import CapturingTaps from "../Lab1Screen/CapturingTaps";
-import CustomButtonScreen from "../Lab1Screen/CustomButton";
-import Form from "../Lab1Screen/Form";
-import LongList from "../Lab1Screen/LongList";
-import ScrollableContent from "../Lab1Screen/ScrollableContent";
+import HelloWorld from "./HelloWorld";
+import StateAndProps from "./StateAndProps";
+import Styling from "./Styling";
+import CapturingTaps from "./CapturingTaps";
+import CustomButtonScreen from "./CustomButton";
+import Form from "./Form";
+import LongList from "./LongList";
+import ScrollableContent from "./ScrollableContent";
 import Calculator from "./Calculator";
 
 const Lab1Stack = createNativeStackNavigator();

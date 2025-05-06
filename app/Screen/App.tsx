@@ -2,17 +2,19 @@ import { StyleSheet } from "react-native";
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Home from "./StackScreen/Home";
-import Lab1StackScreen from "./Lab1Screen/StackLab1Screen";
+import Lab1StackScreen from "./ThucHanh/Lab1Screen/StackLab1Screen";
 import Lab1Screen from "./StackScreen/Lab1Screen";
 import LyThuyetBuoi2 from "./LyThuyet/Buoi2/LyThuyetBuoi2";
 import DrawerNav from "./LyThuyet/Buoi4/Drawer";
 import Detail from "./LyThuyet/Buoi4/Detail";
+import ContactAppStack from "./ThucHanh/Lab2Sreen/Navigation/ContactAppStack";
+import CreateUserForm from "./ThucHanh/Lab3Screen/Lab3Screen";
 const Stack = createNativeStackNavigator();
 const App = () => {
   return (
     <Stack.Navigator
       screenOptions={{ headerShown: false }}
-      initialRouteName={"LyThuyetBuoi4"}
+      initialRouteName={"Lab3"}
     >
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="Lab1" component={Lab1Screen} />
@@ -20,6 +22,8 @@ const App = () => {
       <Stack.Screen name="LyThuyetBuoi2" component={LyThuyetBuoi2} />
       <Stack.Screen name="LyThuyetBuoi4" component={DrawerNav} />
       <Stack.Screen name="Detail" component={Detail} />
+      <Stack.Screen name="Lab2" component={ContactAppStack} />
+      <Stack.Screen name="Lab3" component={CreateUserForm} />
     </Stack.Navigator>
   );
 };
