@@ -1,28 +1,33 @@
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {createDrawerNavigator} from '@react-navigation/drawer';
 import React from 'react';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import { MaterialIcons } from '@expo/vector-icons';
 import ContactApp from '../Screen/App';
 import Profile from '../Screen/Profile';
 import Favorites from '../Screen/Favorite';
 import User from '../Screen/User';
 import Options from '../Screen/Option';
-const getDrawerItemIcon =
+
+
+const getTabBarIcon =
   (icon: any) =>
   ({tintColor}: any) =>
-    <MaterialIcons name={icon} size={22} style={{color: tintColor}} />;
+    <MaterialIcons name={icon} size={26} style={{color: tintColor}} />;
 
 const Stack = createNativeStackNavigator();
 const ContactsScreens = () => {
   return (
-    <Stack.Navigator initialRouteName="Contacts">
+    <Stack.Navigator
+      initialRouteName="Contacts"
+      screenOptions={{
+        headerTintColor: 'white',
+        headerStyle: {backgroundColor: 'tomato'},
+        headerTitleAlign: 'center',
+      }}>
       <Stack.Screen
         name="Contacts"
         component={ContactApp}
-        options={{
-          title: 'Contacts',
-          headerShown: false,
-        }}
+        options={{title: 'Contacts'}}
       />
       <Stack.Screen
         name="Profile"
@@ -33,9 +38,8 @@ const ContactsScreens = () => {
           return {
             title: name.split(' ')[0],
             headerTintColor: 'white',
-            headerShown: false,
             headerStyle: {
-              backgroundColor: '#3498db',
+              backgroundColor: '#3498DB',
             },
           };
         }}
@@ -50,12 +54,12 @@ const FavoritesScreens = () => {
       <Stack.Screen
         name="Favorites"
         component={Favorites}
-        options={{title: 'Favorites', headerShown: false}}
+        options={{title: 'Favorites'}}
       />
       <Stack.Screen
         name="Profile"
         component={Profile}
-        options={{title: 'Profile', headerShown: false}}
+        options={{title: 'Profile'}}
       />
     </Stack.Navigator>
   );
@@ -69,7 +73,6 @@ const UserScreens = () => {
         component={User}
         options={({navigation}) => ({
           headerTitle: 'Me',
-          headerShown: false,
           headerTintColor: 'white',
           headerStyle: {
             backgroundColor: '#3498db',
@@ -84,64 +87,50 @@ const UserScreens = () => {
           ),
         })}
       />
-      {/* <Stack.Screen
-        name="Options"
-        component={Options}
-        options={{title: 'Options'}}
-      /> */}
-    </Stack.Navigator>
-  );
-};
-
-const OptionScreens = () => {
-  return (
-    <Stack.Navigator initialRouteName="Options">
       <Stack.Screen
         name="Options"
         component={Options}
-        options={{title: 'Options', headerShown: false}}
+        options={{title: 'Options'}}
       />
     </Stack.Navigator>
   );
 };
 
-const Drawer = createDrawerNavigator();
-const DrawerNavigator = () => {
+const Tab = createMaterialBottomTabNavigator();
+const BottomTab = () => {
   return (
-    <Drawer.Navigator initialRouteName="ContactsScreens">
-      <Drawer.Screen
+    <Tab.Navigator
+      initialRouteName="ContactsScreens"
+      barStyle={{backgroundColor: '#3498db'}}
+      labeled={false}
+      activeTintColor="#D8D8D8"
+      inactiveColor="#BBBBBB">
+      <Tab.Screen
         name="ContactsScreens"
         component={ContactsScreens}
         options={{
-          drawerIcon: getDrawerItemIcon('list'),
-          title: 'Contacts',
+          tabBarIcon: getTabBarIcon('list'),
+          tabBarLabel: 'Contacts',
         }}
       />
-      <Drawer.Screen
+      <Tab.Screen
         name="FavoritesScreens"
         component={FavoritesScreens}
         options={{
-          drawerIcon: getDrawerItemIcon('star'),
-          title: 'Favorites list',
+          tabBarIcon: getTabBarIcon('star'),
+          tabBarLabel: 'Favorites',
         }}
       />
-      <Drawer.Screen
+      <Tab.Screen
         name="UserScreens"
         component={UserScreens}
         options={{
-          drawerIcon: getDrawerItemIcon('person'),
-          title: 'My Profile',
+          tabBarLabel: 'Profile',
+          tabBarIcon: getTabBarIcon('person'),
         }}
       />
-      <Drawer.Screen
-        name="OptionScreens"
-        component={OptionScreens}
-        options={{
-          drawerIcon: getDrawerItemIcon('settings'),
-          title: 'Setting',
-        }}
-      />
-    </Drawer.Navigator>
+    </Tab.Navigator>
   );
 };
-export default DrawerNavigator;
+
+export default BottomTab;

@@ -4,6 +4,7 @@ import { navigate } from 'expo-router/build/global-state/routing';
 import { useNavigation } from 'expo-router';
 const data = [
   { id: '1', title: 'Lab 1', Screen: 'Lab1' },
+  { id: '2', title: 'Lab 2', Screen: 'Lab2' }
 ];
 const Home = () => {
   const navigation = useNavigation<any>();

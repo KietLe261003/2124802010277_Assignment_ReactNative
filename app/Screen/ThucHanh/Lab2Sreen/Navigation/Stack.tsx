@@ -5,7 +5,7 @@ import Profile from '../Screen/Profile';
 
 const Stack = createNativeStackNavigator();
 
-const ContactAppStack = () => {
+const StackApp = () => {
   return (
     <Stack.Navigator
       initialRouteName="Contacts"
@@ -16,4 +16,4 @@ const ContactAppStack = () => {
   );
 };
 
-export default ContactAppStack;
+export default StackApp;
