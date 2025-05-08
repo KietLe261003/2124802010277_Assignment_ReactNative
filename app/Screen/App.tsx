@@ -11,6 +11,7 @@ import ContactAppStack from "./ThucHanh/Lab2Sreen/Navigation/Stack";
 import CreateUserForm from "./ThucHanh/Lab3Screen/Lab3Screen";
 import Lab2StackScreen from "./ThucHanh/Lab2Sreen/StackLab2Screen";
 import Lab2Screen from "./StackScreen/Lab2Screen";
+import Lab3StackScreen from "./ThucHanh/Lab3Screen/Lab3Screen";
 const Stack = createNativeStackNavigator();
 const App = () => {
   return (
@@ -26,7 +27,7 @@ const App = () => {
       <Stack.Screen name="LyThuyetBuoi4" component={DrawerNav} />
       <Stack.Screen name="Detail" component={Detail} />
       <Stack.Screen name="Lab2StackScreen" component={Lab2StackScreen} />
-      <Stack.Screen name="Lab3" component={CreateUserForm} />
+      <Stack.Screen name="Lab3StackScreen" component={Lab3StackScreen} />
     </Stack.Navigator>
   );
 };
