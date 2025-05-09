@@ -1,7 +1,8 @@
 import {useNavigation} from '@react-navigation/native';
 import {useState} from 'react';
 import {Alert, Image, Text, TouchableOpacity, View} from 'react-native';
-import {HelperText, TextInput} from 'react-native-paper';
+import { HelperText, TextInput } from 'react-native-paper';
+
 
 const Login = () => {
   const navigation = useNavigation();

@@ -12,23 +12,29 @@ import CreateUserForm from "./ThucHanh/Lab3Screen/Lab3Screen";
 import Lab2StackScreen from "./ThucHanh/Lab2Sreen/StackLab2Screen";
 import Lab2Screen from "./StackScreen/Lab2Screen";
 import Lab3StackScreen from "./ThucHanh/Lab3Screen/Lab3Screen";
+import { AuthProvider } from "../Config/AuthContext";
+import { PaperProvider } from "react-native-paper";
 const Stack = createNativeStackNavigator();
 const App = () => {
   return (
-    <Stack.Navigator
-      screenOptions={{ headerShown: false }}
-      initialRouteName={"Home"}
-    >
-      <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name="Lab1" component={Lab1Screen} />
-      <Stack.Screen name="Lab2" component={Lab2Screen} />
-      <Stack.Screen name="Lab1StackScreen" component={Lab1StackScreen} />
-      <Stack.Screen name="LyThuyetBuoi2" component={LyThuyetBuoi2} />
-      <Stack.Screen name="LyThuyetBuoi4" component={DrawerNav} />
-      <Stack.Screen name="Detail" component={Detail} />
-      <Stack.Screen name="Lab2StackScreen" component={Lab2StackScreen} />
-      <Stack.Screen name="Lab3StackScreen" component={Lab3StackScreen} />
-    </Stack.Navigator>
+    <PaperProvider>
+      <AuthProvider>
+        <Stack.Navigator
+          screenOptions={{ headerShown: false }}
+          initialRouteName={"Home"}
+        >
+          <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="Lab1" component={Lab1Screen} />
+          <Stack.Screen name="Lab2" component={Lab2Screen} />
+          <Stack.Screen name="Lab1StackScreen" component={Lab1StackScreen} />
+          <Stack.Screen name="LyThuyetBuoi2" component={LyThuyetBuoi2} />
+          <Stack.Screen name="LyThuyetBuoi4" component={DrawerNav} />
+          <Stack.Screen name="Detail" component={Detail} />
+          <Stack.Screen name="Lab2StackScreen" component={Lab2StackScreen} />
+          <Stack.Screen name="Lab3StackScreen" component={Lab3StackScreen} />
+        </Stack.Navigator>
+      </AuthProvider>
+    </PaperProvider>
   );
 };
 

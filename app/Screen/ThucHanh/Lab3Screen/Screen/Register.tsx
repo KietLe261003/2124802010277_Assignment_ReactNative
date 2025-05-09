@@ -13,28 +13,43 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
 } from "firebase/auth";
+import { getFirestore, doc, setDoc } from "firebase/firestore";
 import { app } from "../../../../Config/firebaseconfig";
-import { useNavigation } from "expo-router";
 
-const Login = () => {
+const Register = () => {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [hidePassword, setHidePassword] = useState(true);
   const auth = getAuth(app);
-  const navigate = useNavigation<any>();
+  const db = getFirestore(app);
 
-  const handleLogin = async () => {
+  const handleRegister = async () => {
     try {
       const email = `${phone}@kami.com`;
-      await signInWithEmailAndPassword(auth, email, password);
-      navigate.navigate("BottomTab", { screen: "Home" });
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password,
+      );
+
+      // Lưu thông tin người dùng vào Firestore
+      await setDoc(doc(db, "users", userCredential.user.uid), {
+        name: "Kiệt Lê",
+        email: email,
+        phone: phone,
+        createdAt: new Date(),
+        uid: userCredential.user.uid,
+      });
+
+      alert("Đăng ký thành công!");
     } catch (error) {
-      alert("Đăng nhập thất bại: " + error);
+      alert("Đăng ký thất bại: " + error);
     }
   };
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Login</Text>
+      <Text style={styles.title}>Create User</Text>
 
       <TextInput
         placeholder="Phone"
@@ -60,15 +75,14 @@ const Login = () => {
           />
         </TouchableOpacity>
       </View>
-
-      <TouchableOpacity style={styles.button} onPress={handleLogin}>
-        <Text style={styles.buttonText}>Login</Text>
+      <TouchableOpacity style={styles.registerButton} onPress={handleRegister}>
+        <Text style={styles.registerButtonText}>Register</Text>
       </TouchableOpacity>
     </View>
   );
 };
 
-export default Login;
+export default Register;
 
 const styles = StyleSheet.create({
   container: {

@@ -1,26 +1,40 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from 'expo-router';
+import { Service } from '../Type/Service';
+import { collection, getFirestore, onSnapshot } from '@firebase/firestore';
+import { app } from '@/app/Config/firebaseconfig';
 
-const services = [
-  { id: '1', name: 'Chăm sóc da mặt và dưỡng ẩm tự nhi...', price: '250.000 ₫' },
-  { id: '2', name: 'Gội đầu dưỡng sinh trung hoa', price: '150.000 ₫' },
-  { id: '3', name: 'Lột mụn', price: '40.000 ₫' },
-  { id: '4', name: 'Gội đầu dưỡng sinh trọn gói tất cả dịc...', price: '400.000 ₫' },
-  { id: '5', name: 'dich vu rua mat', price: '100.000 ₫' },
-  { id: '6', name: 'Dich vu danh rang', price: '50.000 ₫' },
-];
+const db = getFirestore(app);
 
 const Home = () => {
-    const navigation = useNavigation<any>();
+  const [services, setServices] =useState<Service[]>([]);
+  const navigation = useNavigation<any>();
   const renderItem = ({ item }: any) => (
     <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('DeatilService', { idService: item.id })}>
       <Text style={styles.serviceText}>{item.name}</Text>
       <Text style={styles.priceText}>{item.price}</Text>
     </TouchableOpacity>
   );
-
+  const fetchServices = () => {
+    const unsubscribe = onSnapshot(collection(db, 'services'), (snapshot) => {
+      const serviceList: Service[] = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      })) as Service[];
+      setServices(serviceList);
+    }, (error) => {
+      console.error('Lỗi khi lắng nghe services:', error);
+    });
+  
+    return unsubscribe;
+  };
+  useEffect(() => {
+    const unsubscribe = fetchServices();
+    return () => unsubscribe(); 
+  }, []);
+  
   return (
     <View style={styles.container}>
       {/* Header */}
