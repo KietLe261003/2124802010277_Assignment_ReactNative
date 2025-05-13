@@ -12,7 +12,7 @@ const Home = () => {
   const [services, setServices] =useState<Service[]>([]);
   const navigation = useNavigation<any>();
   const renderItem = ({ item }: any) => (
-    <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('DeatilService', { idService: item.id })}>
+    <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('DetailService', { idService: item.id })}>
       <Text style={styles.serviceText}>{item.name}</Text>
       <Text style={styles.priceText}>{item.price}</Text>
     </TouchableOpacity>

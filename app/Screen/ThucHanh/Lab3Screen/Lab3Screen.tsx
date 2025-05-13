@@ -1,27 +1,41 @@
-import { View, Text } from "react-native";
-import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import React from "react";
 import BottomTab from "./Component/BottomTab";
 import AddService from "./Screen/AddService";
 import DetailService from "./Screen/DetailService";
 import Login from "./Screen/Login";
 import { useAuth } from "@/app/Config/AuthContext";
 import EditService from "./Screen/EditService";
+import UserScreen from "./Screen/UserScreen";
+import Register from "./Screen/Register";
+import BottomTabUser from "./Component/BottomTabUser";
+
 const Lab3Stack = createNativeStackNavigator();
+
 const Lab3StackScreen = () => {
-  const { user} = useAuth();
+  const { user } = useAuth();
+  console.log(user?.role);
+  
+
   return (
     <Lab3Stack.Navigator
       screenOptions={{ headerShown: true }}
-      initialRouteName={user ? "BottomTab" : "Login"}
+      initialRouteName={user ? (user.role === "admin" ? "BottomTab" : "HomeUserScreen") : "Login"}
     >
       {!user ? (
+        <>
         <Lab3Stack.Screen
           name="Login"
           options={{ headerShown: false }}
           component={Login}
         />
-      ) : (
+        <Lab3Stack.Screen
+          name="Register"
+          options={{ headerShown: false }}
+          component={Register}
+        />
+        </>
+      ) : user.role === "admin" ? (
         <>
           <Lab3Stack.Screen
             name="BottomTab"
@@ -40,7 +54,7 @@ const Lab3StackScreen = () => {
             component={AddService}
           />
           <Lab3Stack.Screen
-            name="DeatilService"
+            name="DetailService"
             options={{
               title: "DetailService",
               headerStyle: {
@@ -60,6 +74,25 @@ const Lab3StackScreen = () => {
               headerTintColor: "#fff",
             }}
             component={EditService}
+          />
+        </>
+      ) : (
+        <>
+          <Lab3Stack.Screen
+            name="HomeUserScreen"
+            options={{ headerShown: false }}
+            component={BottomTabUser}
+          />  
+          <Lab3Stack.Screen
+            name="UserScreen"
+            options={{
+              title: "UserScreen",
+              headerStyle: {
+                backgroundColor: "#f44336",
+              },
+              headerTintColor: "#fff",
+            }}
+            component={UserScreen}
           />
         </>
       )}

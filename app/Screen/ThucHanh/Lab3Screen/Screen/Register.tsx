@@ -34,7 +34,7 @@ const Register = () => {
 
       // Lưu thông tin người dùng vào Firestore
       await setDoc(doc(db, "users", userCredential.user.uid), {
-        name: "Kiệt Lê",
+        name: "Kiệt Lê1",
         email: email,
         phone: phone,
         createdAt: new Date(),
