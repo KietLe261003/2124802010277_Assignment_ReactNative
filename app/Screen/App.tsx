@@ -7,14 +7,15 @@ import Lab1Screen from "./StackScreen/Lab1Screen";
 import LyThuyetBuoi2 from "./LyThuyet/Buoi2/LyThuyetBuoi2";
 import DrawerNav from "./LyThuyet/Buoi4/Drawer";
 import Detail from "./LyThuyet/Buoi4/Detail";
-import ContactAppStack from "./ThucHanh/Lab2Sreen/Navigation/Stack";
-import CreateUserForm from "./ThucHanh/Lab3Screen/Lab3Screen";
+
 import Lab2StackScreen from "./ThucHanh/Lab2Sreen/StackLab2Screen";
 import Lab2Screen from "./StackScreen/Lab2Screen";
 import Lab3StackScreen from "./ThucHanh/Lab3Screen/Lab3Screen";
 import { AuthProvider } from "../Config/AuthContext";
 import { PaperProvider } from "react-native-paper";
 import LyThuyetBuoi5 from "./LyThuyet/Buoi5/Index";
+import Lab4StackScreen from "./ThucHanh/Lab4Screen/Lab4Screen";
+import Lab4 from "./ThucHanh/Lab4Screen/App";
 const Stack = createNativeStackNavigator();
 const App = () => {
   return (
@@ -22,7 +23,7 @@ const App = () => {
       <AuthProvider>
         <Stack.Navigator
           screenOptions={{ headerShown: false }}
-          initialRouteName={"LyThuyetBuoi5"}
+          initialRouteName={"Lab4StackScreen"}
         >
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Lab1" component={Lab1Screen} />
@@ -34,6 +35,7 @@ const App = () => {
           <Stack.Screen name="Detail" component={Detail} />
           <Stack.Screen name="Lab2StackScreen" component={Lab2StackScreen} />
           <Stack.Screen name="Lab3StackScreen" component={Lab3StackScreen} />
+          <Stack.Screen name="Lab4StackScreen" component={Lab4} />
         </Stack.Navigator>
       </AuthProvider>
     </PaperProvider>
