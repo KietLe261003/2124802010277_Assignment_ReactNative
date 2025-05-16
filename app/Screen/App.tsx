@@ -16,6 +16,7 @@ import { PaperProvider } from "react-native-paper";
 import LyThuyetBuoi5 from "./LyThuyet/Buoi5/Index";
 import Lab4StackScreen from "./ThucHanh/Lab4Screen/Lab4Screen";
 import Lab4 from "./ThucHanh/Lab4Screen/App";
+import GiuaKyScreen from "./LyThuyet/GiuaKy/GiuaKy";
 const Stack = createNativeStackNavigator();
 const App = () => {
   return (
@@ -23,7 +24,7 @@ const App = () => {
       <AuthProvider>
         <Stack.Navigator
           screenOptions={{ headerShown: false }}
-          initialRouteName={"Lab4StackScreen"}
+          initialRouteName={"GiuaKy"}
         >
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Lab1" component={Lab1Screen} />
@@ -36,6 +37,7 @@ const App = () => {
           <Stack.Screen name="Lab2StackScreen" component={Lab2StackScreen} />
           <Stack.Screen name="Lab3StackScreen" component={Lab3StackScreen} />
           <Stack.Screen name="Lab4StackScreen" component={Lab4} />
+          <Stack.Screen name="GiuaKy" component={GiuaKyScreen} />
         </Stack.Navigator>
       </AuthProvider>
     </PaperProvider>
