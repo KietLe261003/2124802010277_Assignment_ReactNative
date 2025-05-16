@@ -4,7 +4,13 @@ import React from "react";
 import Login from "./Screen/Login";
 import Register from "./Screen/Register";
 import Home from "./Screen/Home";
+import FoodListByCategory from "./Screen/FoodListByCategory";
+import CartScreen from "./Screen/CartScreen";
+import PaymentSuccess from "./Screen/PaymentSuccess";
 import { CartProvider } from "@/app/Context/CartContext";
+import DrawerNav from "./Component/Drawer";
+import HomeWithDrawer from "./Screen/HomeWithDrawer";
+import UserInfoScreen from "./Screen/UserInfoScreen";
 
 const GiuaKy = createNativeStackNavigator();
 
@@ -21,21 +27,43 @@ const GiuaKyScreen = () => {
           <>
             <GiuaKy.Screen
               name="Login"
-              options={{ headerShown: false }}
               component={Login}
+              options={{ headerShown: false }}
             />
             <GiuaKy.Screen
               name="Register"
-              options={{ headerShown: false }}
               component={Register}
+              options={{ headerShown: false }}
             />
           </>
         ) : (
           <>
             <GiuaKy.Screen
               name="Home"
+              component={HomeWithDrawer}
               options={{ headerShown: false }}
-              component={Home}
+            />
+            <GiuaKy.Screen
+              name="FoodListByCategory"
+              component={FoodListByCategory}
+              options={({ route }: any) => ({
+                title: route.params?.category || "Food List",
+              })}
+            />
+            <GiuaKy.Screen
+              name="Cart"
+              component={CartScreen}
+              options={{ title: "Cart" }}
+            />
+            <GiuaKy.Screen
+              name="PaymentSuccess"
+              component={PaymentSuccess}
+              options={{ headerShown: false }}
+            />
+            <GiuaKy.Screen
+              name="UserInfor"
+              component={UserInfoScreen}
+              options={{ headerShown: false }}
             />
           </>
         )}

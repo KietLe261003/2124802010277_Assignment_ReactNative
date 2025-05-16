@@ -13,6 +13,7 @@ import { app } from "@/app/Config/firebaseconfig";
 import { FontAwesome } from "@expo/vector-icons";
 import { useAuth } from "@/app/Config/AuthContext";
 import { useCart } from "@/app/Context/CartContext";
+import { useNavigation, DrawerActions } from "@react-navigation/native";
 
 export interface FoodItem {
   id: string;
@@ -26,8 +27,9 @@ export interface FoodItem {
 const Home: React.FC = () => {
   const db = getFirestore(app);
   const [foodItems, setFoodItems] = useState<FoodItem[]>([]);
-  const {logout}=useAuth();
-  const {cartItems}=useCart();
+  const { logout } = useAuth();
+  const { cartItems } = useCart();
+  const navigation = useNavigation<any>();
 
   useEffect(() => {
     const fetchFoodItems = async () => {
@@ -67,7 +69,14 @@ const Home: React.FC = () => {
   };
 
   const renderItem: ListRenderItem<FoodItem> = ({ item }) => (
-    <TouchableOpacity style={styles.card}>
+    <TouchableOpacity
+      style={styles.card}
+      onPress={() =>
+        navigation.navigate("FoodListByCategory", {
+          category: item.category,
+        })
+      }
+    >
       <Image
         source={getImageSource(item.imagePath)}
         style={styles.image}
@@ -80,24 +89,6 @@ const Home: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <TouchableOpacity>
-          <FontAwesome name="bars" size={24} color="#333" />
-        </TouchableOpacity>
-        <Text style={styles.headerTitle}>Restaurant App</Text>
-        <View style={styles.headerIcons}>
-          <View style={styles.cartBadge}>
-            <Text style={styles.cartCount}>{cartItems.length}</Text>
-          </View>
-          <FontAwesome
-            name="shopping-cart"
-            size={22}
-            color="#333"
-            style={{ marginRight: 12 }}
-          />
-          <FontAwesome name="sign-out" size={22} color="#333" onPress={()=>{logout()}} />
-        </View>
-      </View>
       <Text style={styles.title}>Cuisine</Text>
       <FlatList
         data={foodItems}
